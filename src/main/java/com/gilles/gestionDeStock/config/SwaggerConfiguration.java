@@ -22,9 +22,9 @@ import static com.gilles.gestionDeStock.utils.Constants.APP_ROOT;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
-//    public static final String AUTHORIZATION_HEADER = "Authorization";
+    public static final String AUTHORIZATION_HEADER = "Authorization";
 
-   // @Bean
+    @Bean
     public Docket api(){
         return  new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(
@@ -34,17 +34,17 @@ public class SwaggerConfiguration {
                                 .build()
                 )
                 .groupName("REST API V1.0")
-                /*.securityContexts(Collections.singletonList(securityContext()))
+                .securityContexts(Collections.singletonList(securityContext()))
                 .securitySchemes(Collections.singletonList(apiKey()))
-                .useDefaultResponseMessages(false)*/
+                .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.gilles.gestionDeStock"))
-//                .paths(PathSelectors.any())
-                .paths(PathSelectors.ant(APP_ROOT +"/**"))
+                .paths(PathSelectors.any())
+                //.paths(PathSelectors.ant(APP_ROOT +"/**"))
                 .build();
     }
 
-    /*private ApiKey apiKey(){
+    private ApiKey apiKey(){
         return  new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
     }
 
@@ -62,5 +62,5 @@ public class SwaggerConfiguration {
         return Collections.singletonList(
                 new SecurityReference("JWT", authorizationScopes)
         );
-    }*/
+    }
 }
