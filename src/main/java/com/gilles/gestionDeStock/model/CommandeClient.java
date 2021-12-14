@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "Commandeclient")
+@Table(name = "CommandeClient")
 public class CommandeClient extends AbstractEntity{
 
     @Column(name = "code")
@@ -19,6 +19,9 @@ public class CommandeClient extends AbstractEntity{
 
     @Column(name = "datecommande")
     private Instant dateCommande;
+
+    @Column(name = "etatCommande")
+    private EtatCommande etatCommande;
 
     @ManyToOne
     @JoinColumn(name = "idclient")
