@@ -1,10 +1,7 @@
 package com.gilles.gestionDeStock.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gilles.gestionDeStock.model.Category;
-import com.gilles.gestionDeStock.model.Client;
-import com.gilles.gestionDeStock.model.CommandeClient;
-import com.gilles.gestionDeStock.model.LigneCommandeClent;
+import com.gilles.gestionDeStock.model.*;
 import lombok.Builder;
 import lombok.Data;
 
@@ -24,6 +21,8 @@ public class CommandeClientDto {
 
     private Instant dateCommande;
 
+    private EtatCommande etatCommande;
+
     private ClientDto client;
 
     private Integer idEntreprise;
@@ -41,7 +40,8 @@ public class CommandeClientDto {
                 .code(commandeClient.getCode())
                 .dateCommande(commandeClient.getDateCommande())
                 .idEntreprise(commandeClient.getIdEntreprise())
-                .client(ClientDto.fromEntity(commandeClient.getClient()))
+                .etatCommande(commandeClient.getEtatCommande())
+                //.client(ClientDto.fromEntity(commandeClient.getClient()))
                /* .ligneCommandeClents(
                         commandeClient.getLigneCommandeClents() != null ?
                                 commandeClient.getLigneCommandeClents().stream()
@@ -60,9 +60,14 @@ public class CommandeClientDto {
         commandeClient.setCode(commandeClientDto.getCode());
         commandeClient.setIdEntreprise(commandeClientDto.getIdEntreprise());
         commandeClient.setDateCommande(commandeClientDto.getDateCommande());
-        commandeClient.setClient(commandeClient.getClient());
+        commandeClient.setEtatCommande(commandeClientDto.getEtatCommande());
+        //commandeClient.setClient(commandeClient.getClient());
        // commandeClient.setLigneCommandeClents(commandeClient.getLigneCommandeClents());
 
         return commandeClient;
+    }
+
+    public boolean isCommandeLivree(){
+       return EtatCommande.LIVREE.equals(this.etatCommande);
     }
 }
