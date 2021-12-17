@@ -86,7 +86,7 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 
         if (dto.getLigneCommandeClents() != null) {
             dto.getLigneCommandeClents().forEach(ligCmdClt -> {
-                LigneCommandeClent ligneCommandeClent = LigneCommandeClientDto.toEntity(ligCmdClt);
+                LigneCommandeClient ligneCommandeClent = LigneCommandeClientDto.toEntity(ligCmdClt);
                 ligneCommandeClent.setCommandeClient(savedCmdClt);
                 ligneCommandeClientRepository.save(ligneCommandeClent);
             });
@@ -124,9 +124,9 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         }
         CommandeClientDto commandeClient = checkEtatCommande(idCommande);
 
-        Optional<LigneCommandeClent> ligneCommandeClentOptional = findLigneCommandeClient(idLigneCommande);
+        Optional<LigneCommandeClient> ligneCommandeClentOptional = findLigneCommandeClient(idLigneCommande);
 
-        LigneCommandeClent ligneCommandeClent = ligneCommandeClentOptional.get();
+        LigneCommandeClient ligneCommandeClent = ligneCommandeClentOptional.get();
 
         ligneCommandeClent.setQuantite(quantite);
         ligneCommandeClientRepository.save(ligneCommandeClent);
@@ -165,7 +165,7 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         CommandeClientDto commandeClient = checkEtatCommande(idCommande);
 
         // Vérifie et cherche la ligne de commande
-        Optional<LigneCommandeClent> ligneCommandeClent = findLigneCommandeClient(idLigneCommande);
+        Optional<LigneCommandeClient> ligneCommandeClent = findLigneCommandeClient(idLigneCommande);
 
         // Vérifie et cherche l'article
         Optional<Article> articleOptional = articleRepository.findById(idArticle);
@@ -179,7 +179,7 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         }
 
         // set ma ligne de commande et l'enregistre
-        LigneCommandeClent ligneCommandeClentToSaved = ligneCommandeClent.get();
+        LigneCommandeClient ligneCommandeClentToSaved = ligneCommandeClent.get();
         ligneCommandeClentToSaved.setArticle(articleOptional.get());
         ligneCommandeClientRepository.save(ligneCommandeClentToSaved);
 
@@ -278,8 +278,8 @@ public class CommandeClientServiceImpl implements CommandeClientService {
         return commandeClient;
     }
 
-    private Optional<LigneCommandeClent> findLigneCommandeClient(Integer idLigneCommande){
-        Optional<LigneCommandeClent> ligneCommandeClentOptional = ligneCommandeClientRepository.findById(idLigneCommande);
+    private Optional<LigneCommandeClient> findLigneCommandeClient(Integer idLigneCommande){
+        Optional<LigneCommandeClient> ligneCommandeClentOptional = ligneCommandeClientRepository.findById(idLigneCommande);
 
         if (ligneCommandeClentOptional.isEmpty()){
             throw new EntityNotFoundException("Aucune ligne commande client avec l'ID " + idLigneCommande + "trouvé dans la BDD", ErrorCodes.COMMANDE_CLIENT_NOT_FOUND);

@@ -1,13 +1,12 @@
 package com.gilles.gestionDeStock.dto;
 
-import com.gilles.gestionDeStock.model.CommandeClient;
-import com.gilles.gestionDeStock.model.CommandeFournisseur;
-import com.gilles.gestionDeStock.model.Fournisseur;
-import com.gilles.gestionDeStock.model.LigneCommandeFournisseur;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gilles.gestionDeStock.model.*;
 import lombok.Builder;
 import lombok.Data;
 
 
+import javax.persistence.Column;
 import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,10 +21,13 @@ public class CommandeFournisseurDto {
 
     private Instant dateCommande;
 
+    private EtatCommande etatCommande;
+
     private Integer idEntreprise;
 
     private FournisseurDto fournisseur;
 
+    @JsonIgnore
     private List<LigneCommandeFournisseurDto> ligneCommandeFournisseurs;
 
     public static CommandeFournisseurDto fromEntity(CommandeFournisseur commandeFournisseur){
@@ -37,7 +39,8 @@ public class CommandeFournisseurDto {
                 .code(commandeFournisseur.getCode())
                 .dateCommande(commandeFournisseur.getDateCommande())
                 .idEntreprise(commandeFournisseur.getIdEntreprise())
-                .fournisseur(FournisseurDto.fromEntity(commandeFournisseur.getFournisseur()))
+                .etatCommande(commandeFournisseur.getEtatCommande())
+                //.fournisseur(FournisseurDto.fromEntity(commandeFournisseur.getFournisseur()))
                 /*.ligneCommandeFournisseurs(
                         commandeFournisseur.getLigneCommandeFournisseurs() != null ?
                                 commandeFournisseur.getLigneCommandeFournisseurs().stream()
@@ -57,10 +60,13 @@ public class CommandeFournisseurDto {
       commandeFournisseur.setCode(commandeFournisseurDto.getCode());
       commandeFournisseur.setDateCommande(commandeFournisseurDto.getDateCommande());
       commandeFournisseur.setIdEntreprise(commandeFournisseurDto.getIdEntreprise());
-      commandeFournisseur.setFournisseur(commandeFournisseur.getFournisseur());
+      commandeFournisseur.setEtatCommande(commandeFournisseurDto.getEtatCommande());
+     // commandeFournisseur.setFournisseur(commandeFournisseur.getFournisseur());
      // commandeFournisseur.setLigneCommandeFournisseurs(commandeFournisseur.getLigneCommandeFournisseurs());
         return commandeFournisseur;
     }
 
-
+    public boolean isCommandeLivree(){
+        return EtatCommande.LIVREE.equals(this.etatCommande);
+    }
 }

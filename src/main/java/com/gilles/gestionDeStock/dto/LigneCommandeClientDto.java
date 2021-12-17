@@ -1,10 +1,7 @@
 package com.gilles.gestionDeStock.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gilles.gestionDeStock.model.Article;
-import com.gilles.gestionDeStock.model.CommandeClient;
-import com.gilles.gestionDeStock.model.LigneCommandeClent;
-import com.gilles.gestionDeStock.model.LigneCommandeFournisseur;
+import com.gilles.gestionDeStock.model.LigneCommandeClient;
 import lombok.Builder;
 import lombok.Data;
 
@@ -29,7 +26,7 @@ public class LigneCommandeClientDto {
     private Integer idEntreprise;
 
 
-    public static LigneCommandeClientDto fromEntity(LigneCommandeClent ligneCommandeClient){
+    public static LigneCommandeClientDto fromEntity(LigneCommandeClient ligneCommandeClient){
         if (ligneCommandeClient == null){
             return null;
         }
@@ -42,11 +39,11 @@ public class LigneCommandeClientDto {
                 .build();
     }
 
-    public static LigneCommandeClent toEntity(LigneCommandeClientDto ligneCommandeClientDto){
+    public static LigneCommandeClient toEntity(LigneCommandeClientDto ligneCommandeClientDto){
         if (ligneCommandeClientDto == null){
             return null;
         }
-        LigneCommandeClent ligneCommandeClent = new LigneCommandeClent();
+        LigneCommandeClient ligneCommandeClent = new LigneCommandeClient();
         ligneCommandeClent.setId(ligneCommandeClientDto.getId());
         ligneCommandeClent.setQuantite(ligneCommandeClientDto.getQuantite());
         ligneCommandeClent.setPrixUnitaire(ligneCommandeClientDto.getPrixUnitaire());
