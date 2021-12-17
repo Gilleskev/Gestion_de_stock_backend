@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "ligneDeCommandeCleint")
-public class LigneCommandeClent extends AbstractEntity{
+public class LigneCommandeClient extends AbstractEntity{
 
     @ManyToOne
     @JoinColumn(name = "idarticle")

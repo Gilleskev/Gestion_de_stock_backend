@@ -1,13 +1,12 @@
 package com.gilles.gestionDeStock.repository;
 
 
-import com.gilles.gestionDeStock.model.CommandeClient;
-import com.gilles.gestionDeStock.model.LigneCommandeClent;
+import com.gilles.gestionDeStock.model.LigneCommandeClient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface LigneCommandeClientRepository extends JpaRepository<LigneCommandeClent, Integer> {
+public interface LigneCommandeClientRepository extends JpaRepository<LigneCommandeClient, Integer> {
 
-    List<LigneCommandeClent> findAllByCommandeClientId(Integer id);
+    List<LigneCommandeClient> findAllByCommandeClientId(Integer id);
 }

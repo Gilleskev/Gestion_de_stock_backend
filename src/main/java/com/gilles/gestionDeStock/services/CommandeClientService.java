@@ -1,6 +1,6 @@
 package com.gilles.gestionDeStock.services;
 
-import com.gilles.gestionDeStock.dto.ArticleDto;
+
 import com.gilles.gestionDeStock.dto.CommandeClientDto;
 import com.gilles.gestionDeStock.dto.LigneCommandeClientDto;
 import com.gilles.gestionDeStock.model.EtatCommande;
