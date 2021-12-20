@@ -1,6 +1,9 @@
 package com.gilles.gestionDeStock.controller.api;
 
 import com.gilles.gestionDeStock.dto.ArticleDto;
+import com.gilles.gestionDeStock.dto.LigneCommandeClientDto;
+import com.gilles.gestionDeStock.dto.LigneCommandeFournisseurDto;
+import com.gilles.gestionDeStock.dto.LigneVenteDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -50,6 +53,21 @@ public interface ArticleApi {
     })
     List<ArticleDto> findAll();
 
+
+    @GetMapping(value = APP_ROOT + "/articles/historique/vente/{idArticle}")
+    List<LigneVenteDto> findHistoriqueVentes(@PathVariable("idArticle") Integer idArticle);
+
+
+    @GetMapping(value = APP_ROOT + "/articles/historique/commandeclient/{idArticle}")
+    List<LigneCommandeClientDto> findHistoriqueCommandeClient(@PathVariable("idArticle") Integer idArticle);
+
+
+    @GetMapping(value = APP_ROOT + "/articles/historique/commandeFournisseur/{idArticle}")
+    List<LigneCommandeFournisseurDto> finHistoriqueCommandeFournisseur(@PathVariable("idArticle") Integer idArticle);
+
+
+    @GetMapping(value = APP_ROOT + "/articles/filter/category/{idCategorie}")
+    List<ArticleDto> findAllArticleByIdCategorie(@PathVariable("idCategorie")Integer idCategorie);
 
 
     @DeleteMapping(value = APP_ROOT + "/articles/delete/{idArticle}")

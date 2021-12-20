@@ -32,6 +32,9 @@ public enum ErrorCodes {
     MVT_STOCK_NOT_FOUND(14000),
     MVT_STOCK_NOT_VALID(14001),
     BAD_CREDENTIALS(15000),
+    //Liste des exceptions technique
+    UPDATE_PHOTO_EXCEPTION(16000),
+    UNKNOWN_CONTEXT(16001),
 
     ;
 
